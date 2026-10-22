@@ -1,5 +1,6 @@
 package com.devraj.merchant_store.entitites;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -45,7 +46,9 @@ public class Order {
     @Column(name="total_price",nullable=false)
     private BigDecimal totalPrice;
 
-    @OneToMany(mappedBy = "order")
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
 
